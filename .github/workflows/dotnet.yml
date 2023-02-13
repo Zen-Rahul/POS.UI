@@ -34,14 +34,8 @@ jobs:
           node-version: 18
       
       - name: Install dependencies
-        run: |
-          cd 'POS.UI'
-          npm ci
+        run: npm ci
       - name: Run tests
-        run: |
-          cd 'POS.UI'
-          npm run test:headless
+        run: npm run test:headless
       - name: Build
-        run: |
-          cd 'POS.UI'
-          npm run build
+        run: npm run build
