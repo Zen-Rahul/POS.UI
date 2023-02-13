@@ -1,0 +1,15 @@
+<mat-card class="pizza-card">
+    <mat-card-header>
+      <div mat-card-avatar class="pizza-header-image"></div>
+      <mat-card-title>{{pizza?.name}}</mat-card-title>
+      <mat-card-subtitle>Base price : ₹{{pizza?.price}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://cdn.britannica.com/08/177308-050-94D9D6BE/Food-Pizza-Basil-Tomato.jpg" alt="Photo of a pizza">
+    <mat-card-content>
+      
+    </mat-card-content>
+    <mat-card-actions *ngIf="showAction">
+      <button mat-button (click)="openAddOnDialog()">Select</button>
+    </mat-card-actions>
+  </mat-card>
+  

@@ -1,0 +1,95 @@
+<h2 mat-dialog-title>
+    <mat-icon> local_pizza</mat-icon>
+    Add your toppings, sauces, and cheese options
+</h2>
+<mat-dialog-content class="mat-typography">
+    <h3>
+        <mat-icon>shopping_cart</mat-icon>
+        Cart total: ₹{{cartTotal}}
+    </h3>
+    <ng-container *ngIf="takingOrder; else userFormTemplate">
+        <app-pizza-card [pizza]="pizza"></app-pizza-card>
+        <div [formGroup]="pizzaForm">
+            <mat-form-field appearance="fill">
+                <mat-label>Select Crust</mat-label>
+                <mat-select formControlName="crustFc">
+                    <mat-option *ngFor="let crust of (crust$ | async) | itemSizeFilter: pizza.size" [value]="crust">
+                        {{crust.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Select toppings</mat-label>
+                <mat-select formControlName="toppingFc">
+                    <mat-option *ngFor="let topping of (toppings$ | async) | itemSizeFilter: pizza.size"
+                        [value]="topping">
+                        {{topping.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Select sauce</mat-label>
+                <mat-select formControlName="sauceFc">
+                    <mat-option *ngFor="let sauce of (sauces$ | async) | itemSizeFilter: pizza.size" [value]="sauce">
+                        {{sauce.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <p>
+                <mat-checkbox formControlName="cheeseFc">Add cheese</mat-checkbox>
+            </p>
+            <p>
+                <mat-checkbox formControlName="ExtraCheeseFc">Add extra cheese</mat-checkbox>
+            </p>
+        </div>
+        <button mat-button (click)="takingOrder = !takingOrder">Add delivery Details</button>
+    </ng-container>
+    <ng-template #userFormTemplate>
+        <mat-card>
+            <form [formGroup]="userForm">
+                <mat-card-title>Delivery details</mat-card-title>
+                <mat-card>
+                    <mat-grid-list cols="2" rowHeight="95px">
+                        <mat-grid-tile>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Name</mat-label>
+                                <input formControlName="name" matInput>
+                            </mat-form-field>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Email</mat-label>
+                                <input formControlName="email" matInput>
+                            </mat-form-field>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+
+                    <mat-grid-list cols="2" rowHeight="95px">
+                        <mat-grid-tile>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Mobile number</mat-label>
+                                <input formControlName="mobileNumber" matInput>
+                            </mat-form-field>
+                        </mat-grid-tile>
+
+                        <mat-grid-tile>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Delivery Address</mat-label>
+                                <input formControlName="deliveryAddress" matInput>
+                            </mat-form-field>
+                        </mat-grid-tile>
+
+                    </mat-grid-list>
+                </mat-card>
+            </form>
+        </mat-card>
+        <button mat-button (click)="takingOrder = !takingOrder">Go back</button>
+            <button mat-button [disabled]="!userForm.valid" (click)="placeOrder()">Place Order</button>
+    </ng-template>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

@@ -1,0 +1,9 @@
+<div class="pizza-container">
+    <h2>Welcome to Pizzeria</h2>
+    <h3>Customize your order, select your pizza size....</h3>
+
+    <ng-container *ngFor="let item of pizza$ | async">
+        <app-pizza-card [pizza] = "item" [showAction]="true"></app-pizza-card>
+    </ng-container>
+
+</div>
