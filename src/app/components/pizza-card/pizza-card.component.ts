@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Item } from '../../models/item';
 import { PizzaDialogComponent } from '../pizza-dialog/pizza-dialog.component';
