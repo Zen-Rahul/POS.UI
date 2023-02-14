@@ -99,7 +99,7 @@ export class PizzaDialogComponent implements OnInit {
   }
 
   getCartTotal(): number {
-    var result =
+    const result =
       this.pizza.price +
       (this.cheesePrice ?? 0) +
       this.extraCheesePrice +
@@ -111,7 +111,7 @@ export class PizzaDialogComponent implements OnInit {
   }
 
   placeOrder() {
-    var orderedPizza = {
+    let orderedPizza = {
       basePrice: this.pizza.price,
       size: this.pizza.size,
       crust: this.selectedCrust?.name,
@@ -135,7 +135,7 @@ export class PizzaDialogComponent implements OnInit {
       ],
     } as Pizza;
 
-    var order = {
+    let order = {
       pizzas: [orderedPizza],
       user: this.userForm.value,
       value: this.cartTotal

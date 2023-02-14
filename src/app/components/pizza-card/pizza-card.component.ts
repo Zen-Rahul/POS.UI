@@ -8,9 +8,9 @@ import { PizzaDialogComponent } from '../pizza-dialog/pizza-dialog.component';
   templateUrl: './pizza-card.component.html',
   styleUrls: ['./pizza-card.component.scss'],
 })
-export class PizzaCardComponent implements OnDestroy{
+export class PizzaCardComponent {
   constructor(public dialog: MatDialog) {}
-  
+
   @Input() pizza: Item | undefined;
   @Input() showAction = false;
 
@@ -18,9 +18,5 @@ export class PizzaCardComponent implements OnDestroy{
     this.dialog.open(PizzaDialogComponent, {
       data: this.pizza,
     });
-  }
-
-  ngOnDestroy(): void {
-    
   }
 }

@@ -36,7 +36,7 @@ export class OrderComponent implements OnInit {
     
   }
   getOrder() {
-    var id = Number(this.orderIdForm.value.id);
+    const id = Number(this.orderIdForm.value.id);
     this.orderService.getOrder(id).subscribe((x) => (this.order = x));
   }
 }
